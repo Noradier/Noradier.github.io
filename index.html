@@ -21,19 +21,10 @@
       <div class="row justify-content-center border">
         <ul class="nav">
           <li class="nav-item">
-            <a id="guideButton" class="nav-link" href="#" onclick="return false;">Beginner's Advice</a>
-          </li>
-          <li class="nav-item">
-            <a id="damageButton" class="nav-link" href="#" onclick="return false;">Damage Guide</a>
-          </li>
-          <li class="nav-item">
             <a id="tierButton" class="nav-link" href="#" onclick="return false;">Tier List</a>
           </li>
           <li class="nav-item">
-            <a id="memberButton" class="nav-link" href="#" onclick="return false;">Members</a>
-          </li>
-          <li class="nav-item">
-            <a id="dwButton" class="nav-link" href="#" onclick="return false;">Dragonary Wares</a>
+            <a id="memberButton" class="nav-link disable" href="#" onclick="return false;">Members</a>
           </li>
           <li class="nav-item">
             <a id="chrononButton" class="nav-link" href="#" onclick="ShowChronons(); return false;">Chronon Cards</a>
@@ -62,7 +53,13 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id="chrononModalContent">
+          <div class="modal-body">
+            <div class="img-fluid" id="chrononModalImage"></div>
+            <br>
+            <p id="chrononModalDuration"></p>
+            <p id="chrononModalInsta"></p>
+            <p id="chrononModalRound"></p>
+            <p id="chrononModalTrigg"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,7 +68,7 @@
       </div>
     </div>
 
-    <script src="buttonScript.js"></script>
     <script src="chrononScript.js"></script>
+    <script src="buttonScript.js"></script>
   </body>
 </html>
