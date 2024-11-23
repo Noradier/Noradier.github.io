@@ -42,21 +42,21 @@ function FillChrononModal(id) {
   var triggEff = chrononData[id-1][5].split("||");
 
   document.getElementById("chrononModalTitle").innerHTML = chrononData[id-1][0];
-  document.getElementById("chrononModalContent").innerHTML = "<img src="chronons/" + iconName + ".png" class="img-fluid"><br>";
+  document.getElementById("chrononModalContent").innerHTML = "<img src=\"chronons/" + iconName + ".png\" class=\"img-fluid\"><br>";
   document.getElementById("chrononModalContent").innerHTML += "<p>Duration: " + duration + " Round(s).</p><p><b>Instant Skill</b><br>";
   
   for(var i=0; i<instaEff.length; i++) {
-    document.getElementById("chrononModalContent").innerHTML += "<span class="badge badge-success">" + instaEff[i] + "</span>&nbsp;";
+    document.getElementById("chrononModalContent").innerHTML += "<span class=\"badge badge-success\">" + instaEff[i] + "</span>&nbsp;";
   }
 
   document.getElementById("chrononModalContent").innerHTML += "</p><p><b>Round Effect</b><br>";
   for(var i=0; i<roundEff.length; i++) {
-    document.getElementById("chrononModalContent").innerHTML += "<span class="badge badge-primary">" + roundEff[i] + "</span>&nbsp;";
+    document.getElementById("chrononModalContent").innerHTML += "<span class=\"badge badge-primary\">" + roundEff[i] + "</span>&nbsp;";
   }
 
   document.getElementById("chrononModalContent").innerHTML += "</p><p><b>Trigger Skill</b><br>";
   for(var i=0; i<triggEff.length; i++) {
-    document.getElementById("chrononModalContent").innerHTML += "<span class="badge badge-danger">" + triggEff[i] + "</span>&nbsp;";
+    document.getElementById("chrononModalContent").innerHTML += "<span class=\"badge badge-danger\">" + triggEff[i] + "</span>&nbsp;";
   }
 
   document.getElementById("chrononModalContent").innerHTML += "</p>";
