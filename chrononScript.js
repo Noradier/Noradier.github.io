@@ -42,7 +42,7 @@ function FillChrononModal(id) {
   var triggEff = chrononData[id][5].split("||");
 
   document.getElementById("chrononModalTitle").innerHTML = titleName;
-  document.getElementById("chrononModalImage").innerHTML = "<img src=\"data:image/png;base64," + iconUrl + ".png\">";
+  document.getElementById("chrononModalImage").innerHTML = "<img src=\"data:image/png;base64," + iconUrl + "\">";
   document.getElementById("chrononModalDuration").innerHTML = "Duration: " + duration + " Round(s).";
   
   document.getElementById("chrononModalInsta").innerHTML = "<b>Instant Effect</b><br>";
