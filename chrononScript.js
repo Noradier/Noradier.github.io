@@ -34,14 +34,14 @@ const chrononData = [
 ];
 
 function FillChrononModal(id) {
-  var titleName = chrononData[id-1][0];
-  var iconName = chrononData[id-1][1];
-  var duration = chrononData[id-1][2];
-  var instaEff = chrononData[id-1][3].split("||");
-  var roundEff = chrononData[id-1][4].split("||");
-  var triggEff = chrononData[id-1][5].split("||");
+  var titleName = chrononData[id][0];
+  var iconName = chrononData[id][1];
+  var duration = chrononData[id][2];
+  var instaEff = chrononData[id][3].split("||");
+  var roundEff = chrononData[id][4].split("||");
+  var triggEff = chrononData[id][5].split("||");
 
-  document.getElementById("chrononModalTitle").innerHTML = chrononData[id-1][0];
+  document.getElementById("chrononModalTitle").innerHTML = titleName;
   document.getElementById("chrononModalContent").innerHTML = "<img src=\"chronons/" + iconName + ".png\" class=\"img-fluid\"><br>";
   document.getElementById("chrononModalContent").innerHTML += "<p>Duration: " + duration + " Round(s).</p><p><b>Instant Skill</b><br>";
   
