@@ -3,6 +3,29 @@ function GetSkillTag(id) {
   return skillTagData[id-1];
 }
 
+function GetStars(score) {
+  var content = "";
+
+  for(var i=0; i<score; i++){
+    content += "&starf;";
+  }
+  for(var i=0; i<10-score; i++){
+    content += "&star;";
+  }
+
+  return content;
+}
+
+function GetBadges(ids, class) {
+  var content = "";
+  for(var i=0; i<ids.length; i++) {
+    var badgeContent = GetSkillTag( Number(ids[i]) );
+    content += `<span class="${class}">${badgeContent}</span>&nbsp;`;
+  }
+
+  return content;
+}
+
 var currentButton = "";
 function SetCurrentButtonId(nextButton) {
   if (currentButton != "")
@@ -10,6 +33,82 @@ function SetCurrentButtonId(nextButton) {
   document.getElementById(nextButton).classList.add('disabled');
   currentButton = nextButton;
 }
+
+function ShowLeaders() {
+  WriteLeaderContent();
+  SetCurrentButtonId("leaderButton");
+}
+
+function WriteLeaderContent() {
+  document.getElementById("contentHeader").innerHTML = "<h1 class=\"text-center font-weight-bold\">Tier List</h1>";
+
+  var t1 = "";
+  var t2 = "";
+  var t3 = "";
+  var t4 = "";
+  var t5 = "";
+  var t6 = "";
+
+  for(var i=0; i<leaderData.length; i++) {
+    var imageB64 = leaderData[i][0];
+    var finalScore = leaderData[i][1];
+    nextContent = `<a onclick="FillLeaderModal(${i}); return false;" data-toggle="modal" href="#leaderModal">`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
+    if(finalScore > 8.5) {
+      t1 += nextContent;
+      continue;
+    }
+    if(finalScore > 8) {
+      t2 += nextContent;
+      continue;
+    }
+    if(finalScore > 7) {
+      t3 += nextContent;
+      continue;
+    }
+    if(finalScore > 6) {
+      t4 += nextContent;
+      continue;
+    }
+    if(finalScore > 4) {
+      t5 += nextContent;
+      continue;
+    }
+    t6 += nextContent;
+  }
+
+  newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
+  newContent += `<tbody><tr><td>S</td><td>${t1}</td></tr><tr><td>A+</td><td>${t2}</td></tr><tr><td>A</td><td>${t3}</td></tr><tr><td>A-</td><td>${t4}</td></tr><tr><td>B</td><td>${t5}</td></tr><tr><td>C</td><td>${t6}</td></tr></tbody></table>`;
+  document.getElementById("content").innerHTML = newContent;
+}
+
+function FillLeaderModal(id) {
+  var imageB64 = chrononData[id][0];
+  var dmgScr = chrononData[id][2];
+  var teamScr = chrononData[id][3];
+  var survScr = chrononData[id][4];
+  var utilScr = chrononData[id][5];
+  var easeScr = chrononData[id][6];
+  var teamSkl = chrononData[id][7].split("||");
+  var tapSkl = chrononData[id][8].split("||");
+  var actSkl = chrononData[id][9].split("||");
+  var othSkl = chrononData[id][10].split("||");
+  var stars = "";
+
+  document.getElementById("leaderModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
+
+  document.getElementById("leaderModalDMG").innerHTML = "DAMAGE<br>" + GetStars(dmgScr);
+  document.getElementById("leaderModalTEAM").innerHTML = "TEAMBUILDING<br>" + GetStars(teamScr);
+  document.getElementById("leaderModalSURV").innerHTML = "SURVIVABILITY<br>" + GetStars(survScr);
+  document.getElementById("leaderModalUTIL").innerHTML = "UTILITY<br>" + GetStars(utilScr);
+  document.getElementById("leaderModalEASE").innerHTML = "EASE OF USE<br>" + GetStars(easeScr);
+
+  document.getElementById("leaderModalTeamSkill").innerHTML = "<b>Team Skill</b><br>" + GetBadges(teamSkl, "badge badge-primary");
+  document.getElementById("leaderModalTapSkill").innerHTML = "<b>Tap Craft Skill</b><br>" + GetBadges(tapSkl, "badge badge-danger");
+  document.getElementById("leaderModalActSkill").innerHTML = "<b>Active Skill</b><br>" + GetBadges(actSkl, "badge badge-success");
+  document.getElementById("leaderModalOtherSkill").innerHTML = "<b>Other Skill(s)</b><br>" + GetBadges(othSkl, "badge badge-info");
+}
+
 
 function ShowChronons() {
   WriteChrononContent();
@@ -27,7 +126,7 @@ function WriteChrononContent() {
     var imageB64 = chrononData[i][0];
     var chrTier = chrononData[i][2];
     nextContent = `<a onclick="FillChrononModal(${i}); return false;" data-toggle="modal" href="#chrononModal">`;
-    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
     if(chrTier == 3) {
       t3 += nextContent;
     }
@@ -56,23 +155,9 @@ function FillChrononModal(id) {
   document.getElementById("chrononModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
   document.getElementById("chrononModalDuration").innerHTML = `Duration: ${duration} Round(s).`;
 
-  document.getElementById("chrononModalInsta").innerHTML = "<b>Instant Effect</b><br>";
-  for(var i=0; i<instaEff.length; i++) {
-    var effectName = GetSkillTag( Number(instaEff[i]) );
-    document.getElementById("chrononModalInsta").innerHTML += `<span class="badge badge-success">${effectName}</span>&nbsp;`;
-  }
-
-  document.getElementById("chrononModalRound").innerHTML = "<b>Round Effect</b><br>";
-  for(var i=0; i<roundEff.length; i++) {
-    var effectName = GetSkillTag( Number(roundEff[i]) );
-    document.getElementById("chrononModalRound").innerHTML += `<span class="badge badge-primary">${effectName}</span>&nbsp;`;
-  }
-
-  document.getElementById("chrononModalTrigg").innerHTML = "<b>Trigger Skill</b><br>";
-  for(var i=0; i<triggEff.length; i++) {
-    var effectName = GetSkillTag( Number(triggEff[i]) );
-    document.getElementById("chrononModalTrigg").innerHTML += `<span class="badge badge-danger">${effectName}</span>&nbsp;`;
-  }
+  document.getElementById("chrononModalInsta").innerHTML = "<b>Instant Effect</b><br>" + GetBadges(instaEff, "badge badge-success");
+  document.getElementById("chrononModalRound").innerHTML = "<b>Round Effect</b><br>" + GetBadges(roundEff, "badge badge-primary");
+  document.getElementById("chrononModalTrigg").innerHTML = "<b>Trigger Skill</b><br>" + GetBadges(triggEff, "badge badge-danger");
 }
 
 
@@ -91,7 +176,7 @@ function WriteStateContent() {
     var imageB64 = stateData[i][0];
     var stateType = stateData[i][2];
     nextContent = `<a onclick="FillStateModal(${i}); return false;" data-toggle="modal" href="#stateModal">`;
-    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
     if(stateType == 1) {
       t1 += nextContent;
     }
@@ -108,7 +193,7 @@ function WriteStateContent() {
 function FillStateModal(id) {
   var imageB64 = stateData[id][0];
   var stateName = stateData[id][1];
-  var stateDesc = stateData[id][3].split("||);
+  var stateDesc = stateData[id][3].split("||");
 
   document.getElementById("stateModalName").innerHTML = stateName;
   document.getElementById("stateModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
