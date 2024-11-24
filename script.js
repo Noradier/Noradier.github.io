@@ -16,11 +16,11 @@ function GetStars(score) {
   return content;
 }
 
-function GetBadges(ids, class) {
+function GetBadges(ids, classNames) {
   var content = "";
   for(var i=0; i<ids.length; i++) {
     var badgeContent = GetSkillTag( Number(ids[i]) );
-    content += `<span class="${class}">${badgeContent}</span>&nbsp;`;
+    content += `<span class="${classNames}">${badgeContent}</span>&nbsp;`;
   }
 
   return content;
