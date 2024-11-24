@@ -83,17 +83,16 @@ function WriteLeaderContent() {
 }
 
 function FillLeaderModal(id) {
-  var imageB64 = chrononData[id][0];
-  var dmgScr = chrononData[id][2];
-  var teamScr = chrononData[id][3];
-  var survScr = chrononData[id][4];
-  var utilScr = chrononData[id][5];
-  var easeScr = chrononData[id][6];
-  var teamSkl = chrononData[id][7].split("||");
-  var tapSkl = chrononData[id][8].split("||");
-  var actSkl = chrononData[id][9].split("||");
-  var othSkl = chrononData[id][10].split("||");
-  var stars = "";
+  var imageB64 = leaderData[id][0];
+  var dmgScr = leaderData[id][2];
+  var teamScr = leaderData[id][3];
+  var survScr = leaderData[id][4];
+  var utilScr = leaderData[id][5];
+  var easeScr = leaderData[id][6];
+  var teamSkl = leaderData[id][7].split("||");
+  var tapSkl = leaderData[id][8].split("||");
+  var actSkl = leaderData[id][9].split("||");
+  var othSkl = leaderData[id][10].split("||");
 
   document.getElementById("leaderModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
 
