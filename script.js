@@ -99,18 +99,18 @@ function FillLeaderModal(id) {
   var tags = leaderData[id][10].split("||");
 
   var imageB64 = monsterData[leadId];
-  document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
+  document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}" class="mx-auto d-block custom-icon-size-1">`;
 
   document.getElementById("leaderModalAllyImage").innerHTML = `<p class="text-center">Ally</p>`;
   if(allyId > 0) {
     imageB64 = monsterData[allyId];
-    document.getElementById("leaderModalAllyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
+    document.getElementById("leaderModalAllyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="mx-auto d-block custom-icon-size-1">`;
   }
 
   document.getElementById("leaderModalKeyImage").innerHTML = `<p class="text-center">Key Member</p>`;
   if(keyId > 0) {
     imageB64 = monsterData[keyId];
-    document.getElementById("leaderModalKeyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
+    document.getElementById("leaderModalKeyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="mx-auto d-block custom-icon-size-1">`;
   }
 
   document.getElementById("leaderModalDMG").innerHTML = "DAMAGE<br>" + GetStars(dmgScr);
@@ -119,7 +119,7 @@ function FillLeaderModal(id) {
   document.getElementById("leaderModalUTIL").innerHTML = "UTILITY<br>" + GetStars(utilScr);
   document.getElementById("leaderModalEASE").innerHTML = "EASE OF USE<br>" + GetStars(easeScr);
 
-  document.getElementById("leaderModalPlaystyleTags").innerHTML = "<b>Team Skill</b><br>" + GetBadges(tags, "badge badge-primary");
+  document.getElementById("leaderModalPlaystyleTags").innerHTML = "<b>Tags</b><br>" + GetBadges(tags, "badge badge-primary");
 }
 
 
