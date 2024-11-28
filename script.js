@@ -51,7 +51,7 @@ function WriteLeaderContent() {
 
   for(var i=0; i<leaderData.length; i++) {
     var imageB64 = leaderData[i][0];
-    var finalScore = leaderData[i][1];
+    var finalScore = leaderData[i][4];
     nextContent = `<a onclick="FillLeaderModal(${i}); return false;" data-toggle="modal" href="#leaderModal">`;
     nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
     if(finalScore > 8.5) {
@@ -86,12 +86,12 @@ function FillLeaderModal(id) {
   var leadId = leaderData[id][1];
   var allyId = leaderData[id][2];
   var keyId = leaderData[id][3];
-  var dmgScr = leaderData[id][4];
-  var teamScr = leaderData[id][5];
-  var survScr = leaderData[id][6];
-  var utilScr = leaderData[id][7];
-  var easeScr = leaderData[id][8];
-  var tags = leaderData[id][9].split("||");
+  var dmgScr = leaderData[id][5];
+  var teamScr = leaderData[id][6];
+  var survScr = leaderData[id][7];
+  var utilScr = leaderData[id][8];
+  var easeScr = leaderData[id][9];
+  var tags = leaderData[id][10].split("||");
 
   var imageB64 = monsterData[leadId];
   document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}">`;
