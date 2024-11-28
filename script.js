@@ -83,18 +83,28 @@ function WriteLeaderContent() {
 }
 
 function FillLeaderModal(id) {
-  var imageB64 = leaderData[id][0];
-  var dmgScr = leaderData[id][2];
-  var teamScr = leaderData[id][3];
-  var survScr = leaderData[id][4];
-  var utilScr = leaderData[id][5];
-  var easeScr = leaderData[id][6];
-  var teamSkl = leaderData[id][7].split("||");
-  var tapSkl = leaderData[id][8].split("||");
-  var actSkl = leaderData[id][9].split("||");
-  var othSkl = leaderData[id][10].split("||");
+  var leadId = leaderData[id][1];
+  var allyId = leaderData[id][2];
+  var keyId = leaderData[id][3];
+  var dmgScr = leaderData[id][4];
+  var teamScr = leaderData[id][5];
+  var survScr = leaderData[id][6];
+  var utilScr = leaderData[id][7];
+  var easeScr = leaderData[id][8];
+  var tags = leaderData[id][9].split("||");
 
-  document.getElementById("leaderModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
+  var imageB64 = monsterData[leadId];
+  document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}">`;
+
+  if(allyId > 0) {
+    imageB64 = monsterData[allyId];
+    document.getElementById("leaderModalAllyImage").innerHTML = `<p class="text-center">Ally</p><img src="data:image/png;base64,${imageB64}">`;
+  }
+
+  if(keyId > 0) {
+    imageB64 = monsterData[keyId];
+    document.getElementById("leaderModalKeyImage").innerHTML = `<p class="text-center">Key Member</p><img src="data:image/png;base64,${imageB64}">`;
+  }
 
   document.getElementById("leaderModalDMG").innerHTML = "DAMAGE<br>" + GetStars(dmgScr);
   document.getElementById("leaderModalTEAM").innerHTML = "TEAMBUILDING<br>" + GetStars(teamScr);
@@ -102,10 +112,7 @@ function FillLeaderModal(id) {
   document.getElementById("leaderModalUTIL").innerHTML = "UTILITY<br>" + GetStars(utilScr);
   document.getElementById("leaderModalEASE").innerHTML = "EASE OF USE<br>" + GetStars(easeScr);
 
-  document.getElementById("leaderModalTeamSkill").innerHTML = "<b>Team Skill</b><br>" + GetBadges(teamSkl, "badge badge-primary");
-  document.getElementById("leaderModalTapSkill").innerHTML = "<b>Tap Craft Skill</b><br>" + GetBadges(tapSkl, "badge badge-danger");
-  document.getElementById("leaderModalActSkill").innerHTML = "<b>Active Skill</b><br>" + GetBadges(actSkl, "badge badge-success");
-  document.getElementById("leaderModalOtherSkill").innerHTML = "<b>Other Skill(s)</b><br>" + GetBadges(othSkl, "badge badge-info");
+  document.getElementById("leaderModalPlaystyleTags").innerHTML = "<b>Team Skill</b><br>" + GetBadges(tags, "badge badge-primary");
 }
 
 
@@ -204,3 +211,5 @@ function FillStateModal(id) {
   }
 }
 
+
+ShowLeaders();

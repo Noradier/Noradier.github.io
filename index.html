@@ -24,9 +24,6 @@
             <a id="leaderButton" class="nav-link" href="#" onclick="ShowLeaders(); return false;">Tier List</a>
           </li>
           <li class="nav-item">
-            <a id="memberButton" class="nav-link disable" href="#" onclick="return false;">Members</a>
-          </li>
-          <li class="nav-item">
             <a id="chrononButton" class="nav-link" href="#" onclick="ShowChronons(); return false;">Chronon Cards</a>
           </li>
           <li class="nav-item">
@@ -54,20 +51,23 @@
           </div>
           <div class="modal-body">
             <div class="row">
-              <div class="col-auto img-fluid" id="leaderModalImage"></div>
-              <div class="col-auto">
+              <div class="col-4 img-fluid" id="leaderModalLeadImage"></div>
+              <div class="col-4 img-fluid" id="leaderModalAllyImage"></div>
+              <div class="col-4 img-fluid" id="leaderModalKeyImage"></div>
+            </div>
+            <div class="row">
+              <div class="col-6">
                 <p class="modal-title" id="leaderModalDMG"></p>
                 <p class="modal-title" id="leaderModalTEAM"></p>
                 <p class="modal-title" id="leaderModalSURV"></p>
+              </div>
+              <div class="col-6">
                 <p class="modal-title" id="leaderModalUTIL"></p>
                 <p class="modal-title" id="leaderModalEASE"></p>
               </div>
             </div>
             <br>
-            <p id="leaderModalTeamSkill"></p>
-            <p id="leaderModalTapSkill"></p>
-            <p id="leaderModalActSkill"></p>
-            <p id="leaderModalOtherSkill"></p>
+            <p id="leaderModalPlaystyleTags"></p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
