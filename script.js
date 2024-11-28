@@ -16,10 +16,20 @@ function GetStars(score) {
   return content;
 }
 
-function GetBadges(ids, classNames) {
+function GetSkillBadges(ids, classNames) {
   var content = "";
   for(var i=0; i<ids.length; i++) {
     var badgeContent = GetSkillTag( Number(ids[i]) );
+    content += `<span class="${classNames}">${badgeContent}</span>&nbsp;`;
+  }
+
+  return content;
+}
+
+function GetBadges(badgeContents, classNames) {
+  var content = "";
+  for(var i=0; i<badgeContents.length; i++) {
+    var badgeContent = badgeContents[i];
     content += `<span class="${classNames}">${badgeContent}</span>&nbsp;`;
   }
 
@@ -47,38 +57,33 @@ function WriteLeaderContent() {
   var t3 = "";
   var t4 = "";
   var t5 = "";
-  var t6 = "";
 
   for(var i=0; i<leaderData.length; i++) {
     var imageB64 = leaderData[i][0];
     var finalScore = leaderData[i][4];
     nextContent = `<a onclick="FillLeaderModal(${i}); return false;" data-toggle="modal" href="#leaderModal">`;
-    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(finalScore > 8.5) {
       t1 += nextContent;
       continue;
     }
-    if(finalScore > 8) {
+    if(finalScore > 7) {
       t2 += nextContent;
       continue;
     }
-    if(finalScore > 7) {
+    if(finalScore > 6) {
       t3 += nextContent;
       continue;
     }
-    if(finalScore > 6) {
+    if(finalScore > 4) {
       t4 += nextContent;
       continue;
     }
-    if(finalScore > 4) {
-      t5 += nextContent;
-      continue;
-    }
-    t6 += nextContent;
+    t5 += nextContent;
   }
 
   newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
-  newContent += `<tbody><tr><td>S</td><td>${t1}</td></tr><tr><td>A+</td><td>${t2}</td></tr><tr><td>A</td><td>${t3}</td></tr><tr><td>A-</td><td>${t4}</td></tr><tr><td>B</td><td>${t5}</td></tr><tr><td>C</td><td>${t6}</td></tr></tbody></table>`;
+  newContent += `<tbody><tr><td>S</td><td>${t1}</td></tr><tr><td>A+</td><td>${t2}</td></tr><tr><td>A-</td><td>${t3}</td></tr><tr><td>B</td><td>${t4}</td></tr><tr><td>C</td><td>${t5}</td></tr></tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
 }
 
@@ -94,16 +99,22 @@ function FillLeaderModal(id) {
   var tags = leaderData[id][10].split("||");
 
   var imageB64 = monsterData[leadId];
-  document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}">`;
+  document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
 
   if(allyId > 0) {
     imageB64 = monsterData[allyId];
-    document.getElementById("leaderModalAllyImage").innerHTML = `<p class="text-center">Ally</p><img src="data:image/png;base64,${imageB64}">`;
+    document.getElementById("leaderModalAllyImage").innerHTML = `<p class="text-center">Ally</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
+  }
+  else {
+    document.getElementById("leaderModalAllyImage").innerHTML = "";
   }
 
   if(keyId > 0) {
     imageB64 = monsterData[keyId];
-    document.getElementById("leaderModalKeyImage").innerHTML = `<p class="text-center">Key Member</p><img src="data:image/png;base64,${imageB64}">`;
+    document.getElementById("leaderModalKeyImage").innerHTML = `<p class="text-center">Key Member</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
+  }
+  else {
+    document.getElementById("leaderModalKeyImage").innerHTML = "";
   }
 
   document.getElementById("leaderModalDMG").innerHTML = "DAMAGE<br>" + GetStars(dmgScr);
@@ -132,7 +143,7 @@ function WriteChrononContent() {
     var imageB64 = chrononData[i][0];
     var chrTier = chrononData[i][2];
     nextContent = `<a onclick="FillChrononModal(${i}); return false;" data-toggle="modal" href="#chrononModal">`;
-    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(chrTier == 3) {
       t3 += nextContent;
     }
@@ -161,9 +172,9 @@ function FillChrononModal(id) {
   document.getElementById("chrononModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
   document.getElementById("chrononModalDuration").innerHTML = `Duration: ${duration} Round(s).`;
 
-  document.getElementById("chrononModalInsta").innerHTML = "<b>Instant Effect</b><br>" + GetBadges(instaEff, "badge badge-success");
-  document.getElementById("chrononModalRound").innerHTML = "<b>Round Effect</b><br>" + GetBadges(roundEff, "badge badge-primary");
-  document.getElementById("chrononModalTrigg").innerHTML = "<b>Trigger Skill</b><br>" + GetBadges(triggEff, "badge badge-danger");
+  document.getElementById("chrononModalInsta").innerHTML = "<b>Instant Effect</b><br>" + GetSkillBadges(instaEff, "badge badge-success");
+  document.getElementById("chrononModalRound").innerHTML = "<b>Round Effect</b><br>" + GetSkillBadges(roundEff, "badge badge-primary");
+  document.getElementById("chrononModalTrigg").innerHTML = "<b>Trigger Skill</b><br>" + GetSkillBadges(triggEff, "badge badge-danger");
 }
 
 
@@ -182,7 +193,7 @@ function WriteStateContent() {
     var imageB64 = stateData[i][0];
     var stateType = stateData[i][2];
     nextContent = `<a onclick="FillStateModal(${i}); return false;" data-toggle="modal" href="#stateModal">`;
-    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-1"></a>&nbsp;`;
+    nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(stateType == 1) {
       t1 += nextContent;
     }

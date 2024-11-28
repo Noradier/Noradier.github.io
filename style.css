@@ -1,5 +1,15 @@
 
 .custom-icon-size-1{
-    width: 80px;
-    height: 80px;
+    max-width: 120px;
+    max-height: 120px;
+}
+
+.custom-icon-size-2{
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.custom-icon-size-3{
+    max-width: 40px;
+    max-height: 40px;
 }
