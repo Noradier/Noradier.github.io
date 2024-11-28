@@ -101,20 +101,16 @@ function FillLeaderModal(id) {
   var imageB64 = monsterData[leadId];
   document.getElementById("leaderModalLeadImage").innerHTML = `<p class="text-center">Leader</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
 
+  document.getElementById("leaderModalAllyImage").innerHTML = "<p class="text-center">Ally</p>";
   if(allyId > 0) {
     imageB64 = monsterData[allyId];
-    document.getElementById("leaderModalAllyImage").innerHTML = `<p class="text-center">Ally</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
-  }
-  else {
-    document.getElementById("leaderModalAllyImage").innerHTML = "";
+    document.getElementById("leaderModalAllyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
   }
 
+  document.getElementById("leaderModalKeyImage").innerHTML = "<p class="text-center">Key Member</p>";
   if(keyId > 0) {
     imageB64 = monsterData[keyId];
-    document.getElementById("leaderModalKeyImage").innerHTML = `<p class="text-center">Key Member</p><img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
-  }
-  else {
-    document.getElementById("leaderModalKeyImage").innerHTML = "";
+    document.getElementById("leaderModalKeyImage").innerHTML += `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-1">`;
   }
 
   document.getElementById("leaderModalDMG").innerHTML = "DAMAGE<br>" + GetStars(dmgScr);
