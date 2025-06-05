@@ -108,16 +108,17 @@ function CreateDesc(descData, values) {
     for(var j=1; j<separatedValues.length; j++){
       if(baseText.includes(formatVars[j-1])){
         var currentHeaderFormat = formatVars[j-1];
-        var encodedValue = Number(separatedValues[j]);
+        var encodedValue = separatedValues[j];
+        var decodedValue = "";
 
         if(baseText.includes(currentHeaderFormat + ":E}")){
-          encodedValue = attrValue[encodedValue];
-          baseText = baseText.replace(currentHeaderFormat + ":E}", encodedValue);
+          decodedValue = typingData["attr"][encodedValue];
+          baseText = baseText.replace(currentHeaderFormat + ":E}", decodedValue);
         }
         else{
           if(baseText.includes(currentHeaderFormat + ":R}")){
-            encodedValue = raceValue[encodedValue];
-            baseText = baseText.replace(currentHeaderFormat + ":R}", encodedValue);
+            decodedValue = typingData["race"][encodedValue];
+            baseText = baseText.replace(currentHeaderFormat + ":R}", decodedValue);
           }
           else{
             baseText = baseText.replace(currentHeaderFormat + "}", encodedValue);
