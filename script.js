@@ -241,7 +241,7 @@ function WriteCollectionContent(collectionKey) {
       else {
         var imgSrc = GetIconUrl(collectionId);
         var collectionDesc = chosenCollection[j][1];
-        var nextContent = `<a onclick="FillCollectionModal(${imgSrc}, ${collectionDesc}); return false;" data-toggle="modal" href="#collectionModal">`;
+        var nextContent = `<a onclick="FillCollectionModal('${imgSrc}', '${collectionDesc}'); return false;" data-toggle="modal" href="#collectionModal">`;
         nextContent += `<img src="${imgSrc}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
         c2 += nextContent;
       }
@@ -254,8 +254,8 @@ function WriteCollectionContent(collectionKey) {
 }
 
 function FillCollectionModal(imgSrc, desc) {
-  var formattedDesc = desc.replaceAll("<img>", "<img src="https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/");
-  formattedDesc = formattedDesc.replaceAll("</img>", ".jpg" class="img-fluid custom-icon-size-3">")
+  var formattedDesc = desc.replaceAll("<img>", "<img src=\"https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/");
+  formattedDesc = formattedDesc.replaceAll("</img>", ".jpg\" class=\"img-fluid custom-icon-size-3\">");
   document.getElementById("collectionModalImage").innerHTML = `<img src="${imgSrc}">`;
   document.getElementById("collectionModalDescription").innerHTML = formattedDesc;
 }
