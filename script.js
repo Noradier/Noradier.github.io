@@ -56,11 +56,11 @@ function WriteChrononContent() {
   var t3 = "";
   var t2 = "";
   var t1 = "";
-  
+
   chrononKeys.forEach(chrononKey => {
     var imageB64 = chrononCards[chrononKey].icon;
     var chrTier = chrononCards[chrononKey].tier;
-    nextContent = `<a onclick="FillChrononModal(${chrononKey}); return false;" data-toggle="modal" href="#chrononModal">`;
+    nextContent = `<a onclick="FillChrononModal('${chrononKey}'); return false;" data-toggle="modal" href="#chrononModal">`;
     nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(chrTier == 3) {
       t3 += nextContent;
@@ -80,11 +80,11 @@ function WriteChrononContent() {
 
 function FillChrononModal(key) {
   var imageB64 = chrononCards[key].icon;
-  var chrName = chrononData[key][1].name;
-  var duration = chrononData[key][3].duration;
-  var instaEff = chrononData[key][4].instant.split("||");
-  var roundEff = chrononData[key][5].round.split("||");
-  var triggEff = chrononData[key][6].trigger.split("||");
+  var chrName = chrononCards[key].name;
+  var duration = chrononCards[key].duration;
+  var instaEff = chrononCards[key].instant.split("||");
+  var roundEff = chrononCards[key].round.split("||");
+  var triggEff = chrononCards[key].trigger.split("||");
 
   document.getElementById("chrononModalTitle").innerHTML = chrName;
   document.getElementById("chrononModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}">`;
@@ -176,5 +176,35 @@ function FillStateModal(id) {
     var descLine = stateDesc[i];
     document.getElementById("stateModalDescription").innerHTML += `${descLine}<br>`;
   }
+}
+
+
+function ShowArticle(articleKey) {
+  WriteArticleContent(articleKey);
+  var buttonName = articleKey.replace(/\s+/g, "") + "Button";
+  SetCurrentButtonId(buttonName);
+}
+
+function WriteArticleContent(articleKey) {
+  document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${articleKey}</h1>`;
+  var chosenArticles = articles[articleKey];
+
+  var newContent = "";
+
+  for(var i=0; i<chosenArticles.length; i++) {
+    var currentArticle = chosenArticles[i];
+    var contentHeader = currentArticle[0];
+    var isHeader = currentArticle[1];
+    var contentDescription = currentArticle[2];
+
+    if (isHeader) {
+      newContent += `<h2 class="font-weight-bold">${contentHeader}</h2>`;
+    }
+    else {
+      newContent += `<h3 class="font-weight-bold">${contentHeader}</h3><p>${contentDescription}</p>`;
+    }
+  }
+
+  document.getElementById("content").innerHTML = newContent;
 }
 
