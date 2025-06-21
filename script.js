@@ -37,7 +37,7 @@ function GetBadges(badgeContents, classNames) {
 }
 
 function GetIconUrl(id) {
-  if( typeof(id) == "string ) {
+  if( typeof(id) == "string" ) {
     return `https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/${id.padStart(4, '0')}.jpg`;
   } else {
     var _id = String(id).padStart(4, '0');
@@ -223,26 +223,40 @@ function ShowCollection() {
   SetCurrentButtonId("collectionButton");
 }
 
-function WriteArticleContent(articleKey) {
-  document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${articleKey}</h1>`;
-  var chosenArticles = articles[articleKey];
+function WriteCollectionContent(collectionKey) {
+  document.getElementById("contentHeader").innerHTML = "<h1 class=\"text-center font-weight-bold\">Collaboration Collection Card</h1>";
 
-  var newContent = "";
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Reward</th><th scope="col">To Be Collected</th></tr></thead><tbody>`;
 
-  for(var i=0; i<chosenArticles.length; i++) {
-    var currentArticle = chosenArticles[i];
-    var contentHeader = currentArticle[0];
-    var isHeader = currentArticle[1];
-    var contentDescription = currentArticle[2];
-
-    if (isHeader) {
-      newContent += `<h2 class="font-weight-bold">${contentHeader}</h2>`;
+  for(var i=0; i<Object.keys(collection).length; i++) {
+    var key = Object.keys(collection)[i];
+    var chosenCollection = collection[key];
+    var c1 = `<img src="${GetIconUrl(key)}" class="img-fluid custom-icon-size-2">`;
+    var c2 = "";
+    for(var j=0; j<chosenCollection.length; j++) {
+      var collectionId = chosenCollection[j][0];
+      if (collectionId == "-1") {
+        c2 += `<img src="./unknown.png" class="img-fluid custom-icon-size-2">&nbsp;`;
+      }
+      else {
+        var imgSrc = GetIconUrl(collectionId);
+        var collectionDesc = chosenCollection[j][1];
+        var nextContent = `<a onclick="FillCollectionModal(${imgSrc}, ${collectionDesc}); return false;" data-toggle="modal" href="#collectionModal">`;
+        nextContent += `<img src="${imgSrc}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
+        c2 += nextContent;
+      }
     }
-    else {
-      newContent += `<h3 class="font-weight-bold">${contentHeader}</h3><p>${contentDescription}</p>`;
-    }
+    newContent += `<tr><td>${c1}</td><td>${c2}</td></tr>`;
   }
-
+  
+  newContent += `</tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
+}
+
+function FillCollectionModal(imgSrc, desc) {
+  var formattedDesc = desc.replaceAll("<img>", "<img src="https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/");
+  formattedDesc = formattedDesc.replaceAll("</img>", ".jpg" class="img-fluid custom-icon-size-3">")
+  document.getElementById("collectionModalImage").innerHTML = `<img src="${imgSrc}">`;
+  document.getElementById("collectionModalDescription").innerHTML = formattedDesc;
 }
 
