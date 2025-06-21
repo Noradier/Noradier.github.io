@@ -36,6 +36,15 @@ function GetBadges(badgeContents, classNames) {
   return content;
 }
 
+function GetIconUrl(id) {
+  if( typeof(id) == "string ) {
+    return `https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/${id.padStart(4, '0')}.jpg`;
+  } else {
+    var _id = String(id).padStart(4, '0');
+    return `https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/${_id}.jpg`;
+  }
+}
+
 var currentButton = "";
 function SetCurrentButtonId(nextButton) {
   if (currentButton != "")
@@ -60,7 +69,7 @@ function WriteChrononContent() {
   chrononKeys.forEach(chrononKey => {
     var imageB64 = chrononCards[chrononKey].icon;
     var chrTier = chrononCards[chrononKey].tier;
-    nextContent = `<a onclick="FillChrononModal('${chrononKey}'); return false;" data-toggle="modal" href="#chrononModal">`;
+    var nextContent = `<a onclick="FillChrononModal('${chrononKey}'); return false;" data-toggle="modal" href="#chrononModal">`;
     nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(chrTier == 3) {
       t3 += nextContent;
@@ -73,7 +82,7 @@ function WriteChrononContent() {
     }
   });
 
-  newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
   newContent += `<tbody><tr><td>3</td><td>${t3}</td></tr><tr><td>2</td><td>${t2}</td></tr><tr><td>1</td><td>${t1}</td></tr></tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
 }
@@ -148,7 +157,7 @@ function WriteStateContent() {
   for(var i=0; i<stateData.length; i++) {
     var imageB64 = stateData[i][0];
     var stateType = stateData[i][2];
-    nextContent = `<a onclick="FillStateModal(${i}); return false;" data-toggle="modal" href="#stateModal">`;
+    var nextContent = `<a onclick="FillStateModal(${i}); return false;" data-toggle="modal" href="#stateModal">`;
     nextContent += `<img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></a>&nbsp;`;
     if(stateType == 1) {
       t1 += nextContent;
@@ -158,7 +167,7 @@ function WriteStateContent() {
     }
   }
 
-  newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Type</th><th scope="col">States</th></tr></thead>`;
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Type</th><th scope="col">States</th></tr></thead>`;
   newContent += `<tbody><tr><td>Positive</td><td>${t1}</td></tr><tr><td>Negative</td><td>${t2}</td></tr></tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
 }
@@ -183,6 +192,35 @@ function ShowArticle(articleKey) {
   WriteArticleContent(articleKey);
   var buttonName = articleKey.replace(/\s+/g, "") + "Button";
   SetCurrentButtonId(buttonName);
+}
+
+function WriteArticleContent(articleKey) {
+  document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${articleKey}</h1>`;
+  var chosenArticles = articles[articleKey];
+
+  var newContent = "";
+
+  for(var i=0; i<chosenArticles.length; i++) {
+    var currentArticle = chosenArticles[i];
+    var contentHeader = currentArticle[0];
+    var isHeader = currentArticle[1];
+    var contentDescription = currentArticle[2];
+
+    if (isHeader) {
+      newContent += `<h2 class="font-weight-bold">${contentHeader}</h2>`;
+    }
+    else {
+      newContent += `<h3 class="font-weight-bold">${contentHeader}</h3><p>${contentDescription}</p>`;
+    }
+  }
+
+  document.getElementById("content").innerHTML = newContent;
+}
+
+
+function ShowCollection() {
+  WriteCollectionContent();
+  SetCurrentButtonId("collectionButton");
 }
 
 function WriteArticleContent(articleKey) {
