@@ -52,7 +52,6 @@ function SetCurrentButtonId(nextButton) {
   document.getElementById(nextButton).classList.add('disabled');
   currentButton = nextButton;
 }
-
 function ShowChronons() {
   WriteChrononContent();
   SetCurrentButtonId("chrononButton");
@@ -142,7 +141,6 @@ function CreateDesc(descData, values) {
   return descContent;
 }
 
-
 function ShowStates() {
   WriteStateContent();
   SetCurrentButtonId("stateButton");
@@ -187,7 +185,6 @@ function FillStateModal(id) {
   }
 }
 
-
 function ShowArticle(articleKey) {
   WriteArticleContent(articleKey);
   var buttonName = articleKey.replace(/\s+/g, "") + "Button";
@@ -218,13 +215,8 @@ function WriteArticleContent(articleKey) {
 }
 
 
-function ShowCollection() {
-  WriteCollectionContent();
-  SetCurrentButtonId("collectionButton");
-}
-
-function WriteCollectionContent(collectionKey) {
-  document.getElementById("contentHeader").innerHTML = "<h1 class=\"text-center font-weight-bold\">Collaboration Collection Card</h1>";
+function WriteCollectionContent() {
+  document.getElementById("collectionContentHeader").innerHTML = "<h1 class=\"text-center font-weight-bold\">Collaboration Collection Card</h1>";
 
   var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Reward</th><th scope="col">To Be Collected</th></tr></thead><tbody>`;
 
@@ -248,9 +240,9 @@ function WriteCollectionContent(collectionKey) {
     }
     newContent += `<tr><td>${c1}</td><td>${c2}</td></tr>`;
   }
-  
+
   newContent += `</tbody></table>`;
-  document.getElementById("content").innerHTML = newContent;
+  document.getElementById("collectionContent").innerHTML = newContent;
 }
 
 function FillCollectionModal(imgSrc, desc) {
@@ -260,3 +252,4 @@ function FillCollectionModal(imgSrc, desc) {
   document.getElementById("collectionModalDescription").innerHTML = formattedDesc;
 }
 
+WriteCollectionContent();
