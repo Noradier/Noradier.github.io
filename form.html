@@ -208,5 +208,66 @@
       </div>
     </div>
     <script src="database.js"></script>
+    <script>
+      const idInputFields = ["ld","m2","m3","m4","m5","al","cf","ct"];
+      idInputFields.forEach(idInputField => {
+        const baseInput = document.getElementById(idInputField + "Field");
+        baseInput.addEventListener("input", () => {
+          const val = baseInput.value;
+          const enField = document.getElementById(idInputField + "FieldEN");
+          const zhField = document.getElementById(idInputField + "FieldZH");
+          
+          const enNewValue = lbMonster[val]?.en || "";
+          const zhNewValue = lbMonster[val]?.zh || "";
+          enField.value = enNewValue;
+          zhField.value = zhNewValue;
+        });
+      });
+      document.getElementById("dataForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const _stg = document.getElementById("stageId").value;
+        const _uid = document.getElementById("uid").value;
+
+        if (_stg === "") {
+          document.getElementById("output").textContent = "Please select a stage.";
+          return;
+        }
+
+        const payload = {
+          target: "data",
+          data: {
+            stg: _stg,
+            uid: _uid,
+            ld: document.getElementById("ldField").value,
+            m2: document.getElementById("m2Field").value,
+            m3: document.getElementById("m3Field").value,
+            m4: document.getElementById("m4Field").value,
+            m5: document.getElementById("m5Field").value,
+            al: document.getElementById("alField").value,
+            cf: document.getElementById("cfField").value,
+            ct: document.getElementById("ctField").value
+          }
+        };
+
+        const url = "https://script.google.com/macros/s/AKfycbxJHaX2DZMqPaDfLWQoJuUSBLOK-lgpv2Ngszkfx_MCsXPmQiiNQoaeJKJHDxlQGzuHKA/exec";
+
+        try {
+          const response = await fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload),
+            redirect: "follow"
+
+            const result = await response.text();
+            document.getElementById("output").textContent = result;
+          }
+        } catch (err) {
+          document.getElementById("output").textContent = "Error: " + err;
+        }
+      }
+    </script>
   </body>
 </html>
