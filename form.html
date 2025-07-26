@@ -264,21 +264,20 @@
 
         const url = "https://script.google.com/macros/s/AKfycbxJHaX2DZMqPaDfLWQoJuUSBLOK-lgpv2Ngszkfx_MCsXPmQiiNQoaeJKJHDxlQGzuHKA/exec";
 
-        try {
-          const response = await fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(payload),
-            redirect: "follow"
-          });
-
-          const result = await response.text();
-          document.getElementById("resultMessage").textContent = result;
-        } catch (err) {
+        fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload),
+        })
+        .then(() => {
+          document.getElementById("resultMessage").textContent = "Thank you, have a nice day!";
+        })
+        .catch(err => {
           document.getElementById("resultMessage").textContent = "Error: " + err;
-        }
+        });
       });
     </script>
   </body>
