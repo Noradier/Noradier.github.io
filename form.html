@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bootstrap-4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="js/jquery-3.4.1.slim.min.js"></script>
+    <script src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+
+      .card {
+        background-color: #1e1e1e;
+        border: 1px solid #333;
+      }
+
+      .form-control {
+        background-color: #2c2c2c;
+        color: #e0e0e0;
+        border: 1px solid #444;
+      }
+
+      .form-control:focus {
+        background-color: #2c2c2c;
+        color: #fff;
+        border-color: #777;
+        box-shadow: none;
+      }
+
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+      }
+
+      .btn-primary:hover {
+        background-color: #0056b3;
+      }
+
+      label {
+        color: #ccc;
+      }
+
+      .alert-success {
+        background-color: #1c3f1c;
+        color: #b6fcb6;
+        border-color: #2e662e;
+      }
+
+      .alert-danger {
+        background-color: #4b1c1c;
+        color: #fcb6b6;
+        border-color: #662e2e;
+      }
+
+      input[readonly] {
+        background-color: #2c2c2c !important;
+        color: #e0e0e0 !important;
+        border: 1px solid #444 !important;
+      }
+    </style>
+    <title>Leaderboard Submission Form</title>
+  </head>
+  <body class="bg-dark">
+    <div class="container mt-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="card-title mb-4">Form Data</h4>
+
+          <form id="dataForm">
+            <div class="form-group">
+              <label for="stageId">Select the Stage</label>
+              <select class="form-control" id="stageId" name="stageId" required>
+                <option value="">-- Choose --</option>
+                <option value="Nulla CM">Nulla CM</option>
+                <option value="Dark Oberon NM">Dark Oberon NM</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="uid">UID</label>
+              <input type="text" class="form-control" id="uid" name="uid" required>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="ldField">Leader Monster ID</label>
+                <input type="number" class="form-control base-field" id="ldField" name="ldField" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ldFieldEN">Name</label>
+                <input type="text" class="form-control" id="ldFieldEN" name="ldFieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ldFieldZH">名字</label>
+                <input type="text" class="form-control" id="ldFieldZH" name="ldFieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="m2Field">Member 2 Monster ID</label>
+                <input type="number" class="form-control base-field" id="m2Field" name="m2Field" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m2FieldEN">Name</label>
+                <input type="text" class="form-control" id="m2FieldEN" name="m2FieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m2FieldZH">名字</label>
+                <input type="text" class="form-control" id="m2FieldZH" name="m2FieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="m3Field">Member 3 Monster ID</label>
+                <input type="number" class="form-control base-field" id="m3Field" name="m3Field" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m3FieldEN">Name</label>
+                <input type="text" class="form-control" id="m3FieldEN" name="m3FieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m3FieldZH">名字</label>
+                <input type="text" class="form-control" id="m3FieldZH" name="m3FieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="m4Field">Member 4 Monster ID</label>
+                <input type="number" class="form-control base-field" id="m4Field" name="m4Field" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m4FieldEN">Name</label>
+                <input type="text" class="form-control" id="m4FieldEN" name="m4FieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m4FieldZH">名字</label>
+                <input type="text" class="form-control" id="m4FieldZH" name="m4FieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="m5Field">Member 5 Monster ID</label>
+                <input type="number" class="form-control base-field" id="m5Field" name="m5Field" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m5FieldEN">Name</label>
+                <input type="text" class="form-control" id="m5FieldEN" name="m5FieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="m5FieldZH">名字</label>
+                <input type="text" class="form-control" id="m5FieldZH" name="m5FieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="alField">Ally Monster ID</label>
+                <input type="number" class="form-control base-field" id="alField" name="alField" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="alFieldEN">Name</label>
+                <input type="text" class="form-control" id="alFieldEN" name="alFieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="alFieldZH">名字</label>
+                <input type="text" class="form-control" id="alFieldZH" name="alFieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="cfField">Dragonary Craft ID</label>
+                <input type="number" class="form-control base-field" id="cfField" name="cfField" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="cfFieldEN">Name</label>
+                <input type="text" class="form-control" id="cfFieldEN" name="cfFieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="cfFieldZH">名字</label>
+                <input type="text" class="form-control" id="cfFieldZH" name="cfFieldZH" readonly>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="ctField">Chronon Card ID</label>
+                <input type="number" class="form-control base-field" id="ctField" name="ctField" required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ctFieldEN">Name</label>
+                <input type="text" class="form-control" id="ctFieldEN" name="ctFieldEN" readonly>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="ctFieldZH">名字</label>
+                <input type="text" class="form-control" id="ctFieldZH" name="ctFieldZH" readonly>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+          <div id="resultMessage" class="mt-3"></div>
+        </div>
+      </div>
+    </div>
+    <script src="database.js"></script>
+  </body>
+</html>
