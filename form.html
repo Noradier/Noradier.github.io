@@ -223,14 +223,14 @@
           zhField.value = zhNewValue;
         });
       });
-      document.getElementById("dataForm").addEventListener("submit", function(e) {
+      document.getElementById("dataForm").addEventListener("submit", async function(e) {
         e.preventDefault();
 
         const _stg = document.getElementById("stageId").value;
         const _uid = document.getElementById("uid").value;
 
         if (_stg === "") {
-          document.getElementById("output").textContent = "Please select a stage.";
+          document.getElementById("resultMessage").textContent = "Please select a stage.";
           return;
         }
 
@@ -259,13 +259,13 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify(payload),
-            redirect: "follow",
+            redirect: "follow"
+          });
 
-            const result = await response.text();
-            document.getElementById("output").textContent = result;
-          }
+          const result = await response.text();
+          document.getElementById("resultMessage").textContent = result;
         } catch (err) {
-          document.getElementById("output").textContent = "Error: " + err;
+          document.getElementById("resultMessage").textContent = "Error: " + err;
         }
       }
     </script>
