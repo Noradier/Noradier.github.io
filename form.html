@@ -210,6 +210,17 @@
     <script src="database.js"></script>
     <script>
       const idInputFields = ["ld","m2","m3","m4","m5","al","cf","ct"];
+      const sourceMap = {
+        ld: lbMonster,
+        m2: lbMonster,
+        m3: lbMonster,
+        m4: lbMonster,
+        m5: lbMonster,
+        al: lbMonster,
+        cf: lbCraft,
+        ct: lbChronon
+      };
+
       idInputFields.forEach(idInputField => {
         const baseInput = document.getElementById(idInputField + "Field");
         baseInput.addEventListener("input", () => {
@@ -217,8 +228,9 @@
           const enField = document.getElementById(idInputField + "FieldEN");
           const zhField = document.getElementById(idInputField + "FieldZH");
           
-          const enNewValue = lbMonster[val]?.en || "";
-          const zhNewValue = lbMonster[val]?.zh || "";
+          const dataSource = sourceMap[idInputField] || {};
+          const enNewValue = dataSource[val]?.en || "";
+          const zhNewValue = dataSource[val]?.zh || "";
           enField.value = enNewValue;
           zhField.value = zhNewValue;
         });
@@ -267,7 +279,7 @@
         } catch (err) {
           document.getElementById("resultMessage").textContent = "Error: " + err;
         }
-      }
+      });
     </script>
   </body>
 </html>
