@@ -231,7 +231,8 @@
               imgUrl = `icons/runeEquipment_${paddedCraftId}.png`;
               break;
             case "chronon":
-              imgUrl = `icons/1_${id}.png`;
+              const paddedChrononId = id.padStart(2, '0');
+              imgUrl = `icons/1_${paddedChrononId}.png`;
               break
             default:
               if (parseInt(id) > 20000) {
