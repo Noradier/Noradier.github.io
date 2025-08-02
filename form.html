@@ -63,6 +63,13 @@
         color: #e0e0e0 !important;
         border: 1px solid #444 !important;
       }
+
+      .border-label {
+        border: 1px solid white;
+        padding: 2px 4px;
+        border-radius: 4px;
+        display: inline-block;
+      }
     </style>
     <title>Leaderboard Submission Form</title>
   </head>
@@ -74,131 +81,28 @@
 
           <form id="dataForm">
             <div class="form-group">
-              <label for="stageId">Select the Stage</label>
+              <label class="text-primary border-label" for="stageId">Select the Stage</label>
               <select class="form-control" id="stageId" name="stageId" required>
                 <option value="">-- Choose --</option>
                 <option value="Nulla CM">Nulla CM</option>
-                <option value="Dark Oberon NM">Dark Oberon NM</option>
+                <option value="August L10">August L10</option>
+                <option value="Summer Nulla SM">Summer Nulla SM</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="uid">UID</label>
+              <label class="text-primary border-label" for="uid">UID</label>
               <input type="text" class="form-control" id="uid" name="uid" required>
             </div>
 
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="ldField">Leader Monster ID</label>
-                <input type="number" class="form-control base-field" id="ldField" name="ldField" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="ldFieldEN">Name</label>
-                <input type="text" class="form-control" id="ldFieldEN" name="ldFieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="ldFieldZH">名字</label>
-                <input type="text" class="form-control" id="ldFieldZH" name="ldFieldZH" readonly>
-              </div>
+            <label class="mb-1 d-block">Form Fill Method</label>
+            <div class="btn-group mb-3" role="group" aria-label="Form fill options">
+              <button type="button" class="btn btn-primary" onclick="setFormMode('id')">ID</button>
+              <button type="button" class="btn btn-secondary" onclick="setFormMode('en')">Name</button>
+              <button type="button" class="btn btn-info" onclick="setFormMode('zh')">名字</button>
             </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="m2Field">Member 2 Monster ID</label>
-                <input type="number" class="form-control base-field" id="m2Field" name="m2Field" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m2FieldEN">Name</label>
-                <input type="text" class="form-control" id="m2FieldEN" name="m2FieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m2FieldZH">名字</label>
-                <input type="text" class="form-control" id="m2FieldZH" name="m2FieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="m3Field">Member 3 Monster ID</label>
-                <input type="number" class="form-control base-field" id="m3Field" name="m3Field" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m3FieldEN">Name</label>
-                <input type="text" class="form-control" id="m3FieldEN" name="m3FieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m3FieldZH">名字</label>
-                <input type="text" class="form-control" id="m3FieldZH" name="m3FieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="m4Field">Member 4 Monster ID</label>
-                <input type="number" class="form-control base-field" id="m4Field" name="m4Field" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m4FieldEN">Name</label>
-                <input type="text" class="form-control" id="m4FieldEN" name="m4FieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m4FieldZH">名字</label>
-                <input type="text" class="form-control" id="m4FieldZH" name="m4FieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="m5Field">Member 5 Monster ID</label>
-                <input type="number" class="form-control base-field" id="m5Field" name="m5Field" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m5FieldEN">Name</label>
-                <input type="text" class="form-control" id="m5FieldEN" name="m5FieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="m5FieldZH">名字</label>
-                <input type="text" class="form-control" id="m5FieldZH" name="m5FieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="alField">Ally Monster ID</label>
-                <input type="number" class="form-control base-field" id="alField" name="alField" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="alFieldEN">Name</label>
-                <input type="text" class="form-control" id="alFieldEN" name="alFieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="alFieldZH">名字</label>
-                <input type="text" class="form-control" id="alFieldZH" name="alFieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="cfField">Dragonary Craft ID</label>
-                <input type="number" class="form-control base-field" id="cfField" name="cfField" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="cfFieldEN">Name</label>
-                <input type="text" class="form-control" id="cfFieldEN" name="cfFieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="cfFieldZH">名字</label>
-                <input type="text" class="form-control" id="cfFieldZH" name="cfFieldZH" readonly>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-md-4 mb-3">
-                <label for="ctField">Chronon Card ID</label>
-                <input type="number" class="form-control base-field" id="ctField" name="ctField" required>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="ctFieldEN">Name</label>
-                <input type="text" class="form-control" id="ctFieldEN" name="ctFieldEN" readonly>
-              </div>
-              <div class="col-md-4 mb-3">
-                <label for="ctFieldZH">名字</label>
-                <input type="text" class="form-control" id="ctFieldZH" name="ctFieldZH" readonly>
-              </div>
-            </div>
+
+            <div id="formFields" name="formFields"></div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -221,22 +125,15 @@
         ct: lbChronon
       };
 
-      idInputFields.forEach(idInputField => {
-        const baseInput = document.getElementById(idInputField + "Field");
-        baseInput.addEventListener("input", () => {
-          const val = baseInput.value;
-          const enField = document.getElementById(idInputField + "FieldEN");
-          const zhField = document.getElementById(idInputField + "FieldZH");
-          
-          const dataSource = sourceMap[idInputField] || {};
-          const enNewValue = dataSource[val]?.en || "";
-          const zhNewValue = dataSource[val]?.zh || "";
-          enField.value = enNewValue;
-          zhField.value = zhNewValue;
-        });
-      });
+      let alreadyFilled = false;
+
       document.getElementById("dataForm").addEventListener("submit", async function(e) {
         e.preventDefault();
+
+        if(alreadyFilled) {
+          document.getElementById("resultMessage").textContent = "Refresh the page for more input. (Intended)";
+          return;
+        }
 
         const _stg = document.getElementById("stageId").value;
         const _uid = document.getElementById("uid").value;
@@ -252,13 +149,13 @@
             stg: _stg,
             uid: _uid,
             ld: document.getElementById("ldField").value,
-            m2: document.getElementById("m2Field").value,
-            m3: document.getElementById("m3Field").value,
-            m4: document.getElementById("m4Field").value,
-            m5: document.getElementById("m5Field").value,
+            m2: document.getElementById("m2Field").value || 0,
+            m3: document.getElementById("m3Field").value || 0,
+            m4: document.getElementById("m4Field").value || 0,
+            m5: document.getElementById("m5Field").value || 0,
             al: document.getElementById("alField").value,
-            cf: document.getElementById("cfField").value,
-            ct: document.getElementById("ctField").value
+            cf: document.getElementById("cfField").value || 0,
+            ct: document.getElementById("ctField").value || 0
           }
         };
 
@@ -274,11 +171,91 @@
         })
         .then(() => {
           document.getElementById("resultMessage").textContent = "Thank you, have a nice day!";
+          alreadyFilled = true;
         })
         .catch(err => {
           document.getElementById("resultMessage").textContent = "Error: " + err;
         });
       });
+      function setFormMode(mode) {
+        const formDiv = document.getElementById("formFields");
+        switch (mode) {
+          case "id":
+            formDiv.innerHTML = `<div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="ldField">Leader ID*</label><input type="number" class="form-control base-field" id="ldField" name="ldField" required></div><div class="col-4 col-md-4 mb-3"><label for="ldFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="ldFieldEN" name="ldFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="ldFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="ldFieldZH" name="ldFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m2Field">Member 2 ID</label><input type="number" class="form-control base-field" id="m2Field" name="m2Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m2FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m2FieldEN" name="m2FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m2FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m2FieldZH" name="m2FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m3Field">Member 3 ID</label><input type="number" class="form-control base-field" id="m3Field" name="m3Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m3FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m3FieldEN" name="m3FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m3FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m3FieldZH" name="m3FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m4Field">Member 4 ID</label><input type="number" class="form-control base-field" id="m4Field" name="m4Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m4FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m4FieldEN" name="m4FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m4FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m4FieldZH" name="m4FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m5Field">Member 5 ID</label><input type="number" class="form-control base-field" id="m5Field" name="m5Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m5FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m5FieldEN" name="m5FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m5FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m5FieldZH" name="m5FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="alField">Ally ID*</label><input type="number" class="form-control base-field" id="alField" name="alField" required></div><div class="col-4 col-md-4 mb-3"><label for="alFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="alFieldEN" name="alFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="alFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="alFieldZH" name="alFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="cfField">Leader Craft ID</label><input type="number" class="form-control base-field" id="cfField" name="cfField" ></div><div class="col-4 col-md-4 mb-3"><label for="cfFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="cfFieldEN" name="cfFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="cfFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="cfFieldZH" name="cfFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="ctField">Chronon Card ID</label><input type="number" class="form-control base-field" id="ctField" name="ctField" ></div><div class="col-4 col-md-4 mb-3"><label for="ctFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="ctFieldEN" name="ctFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="ctFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="ctFieldZH" name="ctFieldZH" readonly></div></div>`;
+            idInputFields.forEach(idInputField => {
+            const baseInput = document.getElementById(idInputField + "Field");
+              baseInput.addEventListener("input", () => {
+                const val = baseInput.value;
+                const enField = document.getElementById(idInputField + "FieldEN");
+                const zhField = document.getElementById(idInputField + "FieldZH");
+
+                const dataSource = sourceMap[idInputField] || {};
+                const enNewValue = dataSource[val]?.en || "";
+                const zhNewValue = dataSource[val]?.zh || "";
+                enField.value = enNewValue;
+                zhField.value = zhNewValue;
+              });
+            });
+            break;
+          case "en":
+            formDiv.innerHTML = `<div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="ldFieldEN">Name</label><input type="text" class="form-control" id="ldFieldEN" name="ldFieldEN" oninput="showSuggestion('ld', lbMonster, 'EN', '')"><div id="ldSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="ldField">Leader ID*</label><input type="text" class="form-control base-field text-muted" id="ldField" name="ldField" required readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m2FieldEN">Name</label><input type="text" class="form-control" id="m2FieldEN" name="m2FieldEN" oninput="showSuggestion('m2', lbMonster, 'EN', '')"><div id="m2Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m2Field">Member 2 ID</label><input type="text" class="form-control base-field text-muted" id="m2Field" name="m2Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m3FieldEN">Name</label><input type="text" class="form-control" id="m3FieldEN" name="m3FieldEN" oninput="showSuggestion('m3', lbMonster, 'EN', '')"><div id="m3Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m3Field">Member 3 ID</label><input type="text" class="form-control base-field text-muted" id="m3Field" name="m3Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m4FieldEN">Name</label><input type="text" class="form-control" id="m4FieldEN" name="m4FieldEN" oninput="showSuggestion('m4', lbMonster, 'EN', '')"><div id="m4Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m4Field">Member 4 ID</label><input type="text" class="form-control base-field text-muted" id="m4Field" name="m4Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m5FieldEN">Name</label><input type="text" class="form-control" id="m5FieldEN" name="m5FieldEN" oninput="showSuggestion('m5', lbMonster, 'EN', '')"><div id="m5Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m5Field">Member 5 ID</label><input type="text" class="form-control base-field text-muted" id="m5Field" name="m5Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="alFieldEN">Name</label><input type="text" class="form-control" id="alFieldEN" name="alFieldEN" oninput="showSuggestion('al', lbMonster, 'EN', '')"><div id="alSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="alField">Ally ID*</label><input type="text" class="form-control base-field text-muted" id="alField" name="alField" required readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="cfFieldEN">Name</label><input type="text" class="form-control" id="cfFieldEN" name="cfFieldEN" oninput="showSuggestion('cf', lbCraft, 'EN', 'craft')"><div id="cfSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="cfField">Leader Craft ID</label><input type="text" class="form-control base-field text-muted" id="cfField" name="cfField" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="ctFieldEN">Name</label><input type="text" class="form-control" id="ctFieldEN" name="ctFieldEN" oninput="showSuggestion('ct', lbChronon, 'EN', 'chronon')"><div id="ctSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="ctField">Chronon Card ID</label><input type="text" class="form-control base-field text-muted" id="ctField" name="ctField" readonly></div></div>`;
+            break;
+          case "zh":
+            formDiv.innerHTML = `<div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="ldFieldZH">名字</label><input type="text" class="form-control" id="ldFieldZH" name="ldFieldZH" oninput="showSuggestion('ld', lbMonster, 'ZH', '')"><div id="ldSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="ldField">隊長的 ID*</label><input type="text" class="form-control base-field text-muted" id="ldField" name="ldField" required readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m2FieldZH">名字</label><input type="text" class="form-control" id="m2FieldZH" name="m2FieldZH" oninput="showSuggestion('m2', lbMonster, 'ZH', '')"><div id="m2Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m2Field">左方第 2 位成員 ID</label><input type="text" class="form-control base-field text-muted" id="m2Field" name="m2Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m3FieldZH">名字</label><input type="text" class="form-control" id="m3FieldZH" name="m3FieldZH" oninput="showSuggestion('m3', lbMonster, 'ZH', '')"><div id="m3Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m3Field">左方第 3 位成員 ID</label><input type="text" class="form-control base-field text-muted" id="m3Field" name="m3Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m4FieldZH">名字</label><input type="text" class="form-control" id="m4FieldZH" name="m4FieldZH" oninput="showSuggestion('m4', lbMonster, 'ZH', '')"><div id="m4Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m4Field">左方第 4 位成員 ID</label><input type="text" class="form-control base-field text-muted" id="m4Field" name="m4Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="m5FieldZH">名字</label><input type="text" class="form-control" id="m5FieldZH" name="m5FieldZH" oninput="showSuggestion('m5', lbMonster, 'ZH', '')"><div id="m5Suggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="m5Field">左方第 5 位成員 ID</label><input type="text" class="form-control base-field text-muted" id="m5Field" name="m5Field" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="alFieldZH">名字</label><input type="text" class="form-control" id="alFieldZH" name="alFieldZH" oninput="showSuggestion('al', lbMonster, 'ZH', '')"><div id="alSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="alField">戰友的 ID*</label><input type="text" class="form-control base-field text-muted" id="alField" name="alField" required readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="cfFieldZH">名字</label><input type="text" class="form-control" id="cfFieldZH" name="cfFieldZH" oninput="showSuggestion('cf', lbCraft, 'ZH', 'craft')"><div id="cfSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="cfField">隊長的龍刻 ID</label><input type="text" class="form-control base-field text-muted" id="cfField" name="cfField" readonly></div></div><div class="form-row"><div class="col-6 col-md-6 mb-3"><label class="text-primary border-label" for="ctFieldZH">名字</label><input type="text" class="form-control" id="ctFieldZH" name="ctFieldZH" oninput="showSuggestion('ct', lbChronon, 'ZH', 'chronon')"><div id="ctSuggestions" class="mt-2"></div></div><div class="col-6 col-md-6 mb-3"><label for="ctField">時光牌 ID</label><input type="text" class="form-control base-field text-muted" id="ctField" name="ctField" readonly></div></div>`;
+            break;
+        }
+      }
+      function showSuggestion(fieldId, dataSource, lookupMode, urlFormat) {
+        const field = document.getElementById(fieldId + "Field" + lookupMode);
+        const lookupLang = lookupMode.toLowerCase();
+        const searchTerm = field.value.trim().toLowerCase();
+        const suggestionBox = document.getElementById(fieldId + "Suggestions");
+        suggestionBox.innerHTML = "";
+
+        if (!searchTerm) return;
+
+        const matches = Object.entries(dataSource)
+          .reverse()
+          .filter( ([id, fields]) => {
+            const value = fields[lookupLang]?.toLowerCase() || "";
+            return value.includes(searchTerm);
+          })
+          .slice(0, 5);
+        
+        const usedUrls = new Set();
+        matches.forEach( ([id, fields]) => {
+          let imgUrl;
+          switch (urlFormat) {
+            case "craft":
+              const paddedCraftId = fields["imgId"].padStart(2, '0');
+              imgUrl = `icons/runeEquipment_${paddedCraftId}.png`;
+              break;
+            case "chronon":
+              imgUrl = `icons/1_${id}.png`;
+              break
+            default:
+              if (parseInt(id) > 20000) {
+                imgUrl = `${id}.png`;
+              } else {
+                const paddedId = id.padStart(4, '0');
+                imgUrl = `https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/${paddedId}.jpg`;
+              }
+              break
+          }
+          if (usedUrls.has(imgUrl)) return;
+          usedUrls.add(imgUrl);
+
+          const img = document.createElement("img");
+          img.src = imgUrl;
+          img.alt = fields[lookupLang];
+          img.style = "width:50px;cursor:pointer;margin:5px;";
+          img.onclick = () => {
+            suggestionBox.innerHTML = "";
+            document.getElementById(fieldId + "Field").value = id;
+          };
+          suggestionBox.appendChild(img);
+        });
+      }
     </script>
   </body>
 </html>
