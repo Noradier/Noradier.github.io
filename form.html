@@ -85,8 +85,9 @@
               <select class="form-control" id="stageId" name="stageId" required>
                 <option value="">-- Choose --</option>
                 <option value="Nulla CM">Nulla CM</option>
-                <option value="August L10">August L10</option>
-                <option value="Summer Nulla SM">Summer Nulla SM</option>
+                <option value="August 2025 L10">August 2025 L10</option>
+                <option value="Paraiba NM">Paraiba NM</option>
+                <option value="Summer Una SM">Summer Una SM</option>
               </select>
             </div>
 
@@ -221,7 +222,7 @@
             return value.includes(searchTerm);
           })
           .slice(0, 5);
-        
+
         const usedUrls = new Set();
         matches.forEach( ([id, fields]) => {
           let imgUrl;
