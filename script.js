@@ -81,7 +81,7 @@ function WriteChrononContent() {
     }
   });
 
-  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Tier</th><th scope="col">Cards</th></tr></thead>`;
   newContent += `<tbody><tr><td>3</td><td>${t3}</td></tr><tr><td>2</td><td>${t2}</td></tr><tr><td>1</td><td>${t1}</td></tr></tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
 }
@@ -165,7 +165,7 @@ function WriteStateContent() {
     }
   }
 
-  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Type</th><th scope="col">States</th></tr></thead>`;
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Type</th><th scope="col">States</th></tr></thead>`;
   newContent += `<tbody><tr><td>Positive</td><td>${t1}</td></tr><tr><td>Negative</td><td>${t2}</td></tr></tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
 }
@@ -195,7 +195,7 @@ function WriteArticleContent(articleKey) {
   document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${articleKey}</h1>`;
   var chosenArticles = articles[articleKey];
 
-  var newContent = "";
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Type</th><th scope="col">States</th></tr></thead>`;
 
   for(var i=0; i<chosenArticles.length; i++) {
     var currentArticle = chosenArticles[i];
@@ -214,11 +214,39 @@ function WriteArticleContent(articleKey) {
   document.getElementById("content").innerHTML = newContent;
 }
 
+function ShowGameplayKeyword(gameplayKeywordKey) {
+  WriteGameplayKeywordContent(gameplayKeywordKey);
+  var buttonName = gameplayKeywordKey.replace(/\s+/g, "") + "Button";
+  SetCurrentButtonId(buttonName);
+}
+
+function WriteGameplayKeywordContent(gameplayKeywordKey) {
+  document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${gameplayKeywordKey}</h1>`;
+  var chosenGameplayKeywords = gameplayKeywords[gameplayKeywordKey];
+
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Icon</th><th scope="col">Name</th><th scope="col">Description</th></tr></thead><tbody>`;
+
+  for(var i=0; i<chosenGameplayKeywords.length; i++) {
+    var currentGameplayKeyword = chosenGameplayKeywords[i];
+    var imageB64 = currentGameplayKeyword[0];
+    var termName = currentGameplayKeyword[1];
+    var termDesc = currentGameplayKeyword[2];
+
+    if (imageB64 != "") {
+      newContent += `<tr><td><img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></td><td>${termName}</td><td>${termDesc}</td></tr>`;
+    } else {
+      newContent += `<tr><td></td><td>${termName}</td><td>${termDesc}</td></tr>`;
+    }
+  }
+  newContent += `</tbody></table>`;
+  document.getElementById("content").innerHTML = newContent;
+}
+
 
 function WriteCollectionContent() {
   document.getElementById("collectionContentHeader").innerHTML = "<h1 class=\"text-center font-weight-bold\">Collaboration Collection Card</h1>";
 
-  var newContent = `<table class="table-responsive-md table table-primary"><thead><th scope="col">Reward</th><th scope="col">To Be Collected</th></tr></thead><tbody>`;
+  var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Reward</th><th scope="col">To Be Collected</th></tr></thead><tbody>`;
 
   for(var i=0; i<Object.keys(collection).length; i++) {
     var key = Object.keys(collection)[i];
