@@ -45,6 +45,12 @@ function GetIconUrl(id) {
   }
 }
 
+function FormatCustomImgTag(content) {
+  var formattedContent = content.replaceAll("<img>", "<img src=\"https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/");
+  formattedContent = formattedContent.replaceAll("</img>", ".jpg\" class=\"img-fluid custom-icon-size-3\">");
+  return formattedContent;
+}
+
 var currentButton = "";
 function SetCurrentButtonId(nextButton) {
   if (currentButton != "")
@@ -220,26 +226,56 @@ function ShowGameplayKeyword(gameplayKeywordKey) {
   SetCurrentButtonId(buttonName);
 }
 
+var chosenGameplayKeywords;
 function WriteGameplayKeywordContent(gameplayKeywordKey) {
   document.getElementById("contentHeader").innerHTML = `<h1 class="text-center font-weight-bold">${gameplayKeywordKey}</h1>`;
-  var chosenGameplayKeywords = gameplayKeywords[gameplayKeywordKey];
+  chosenGameplayKeywords = gameplayKeywords[gameplayKeywordKey];
 
   var newContent = `<table class="table-responsive-md table table-primary"><thead><tr><th scope="col">Icon</th><th scope="col">Name</th><th scope="col">Description</th></tr></thead><tbody>`;
 
   for(var i=0; i<chosenGameplayKeywords.length; i++) {
-    var currentGameplayKeyword = chosenGameplayKeywords[i];
-    var imageB64 = currentGameplayKeyword[0];
-    var termName = currentGameplayKeyword[1];
-    var termDesc = currentGameplayKeyword[2];
+    const currentGameplayKeyword = chosenGameplayKeywords[i];
+    const imageB64 = currentGameplayKeyword[0];
+    const termName = currentGameplayKeyword[1];
+    const termDesc = FormatCustomImgTag(currentGameplayKeyword[2]);
 
     if (imageB64 != "") {
-      newContent += `<tr><td><img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></td><td>${termName}</td><td>${termDesc}</td></tr>`;
+      newContent += `<tr><td><img src="data:image/png;base64,${imageB64}" class="img-fluid custom-icon-size-2"></td><td><a onclick="FillGameplayKeywordModal(${i}); return false;" data-toggle="modal" href="#gameplayKeywordModal">${termName}</a></td><td>${termDesc}</td></tr>`;
     } else {
       newContent += `<tr><td></td><td>${termName}</td><td>${termDesc}</td></tr>`;
     }
   }
   newContent += `</tbody></table>`;
   document.getElementById("content").innerHTML = newContent;
+}
+
+function FillGameplayKeywordModal(id) {
+  const currentGameplayKeyword = chosenGameplayKeywords[id];
+  const imageB64 = currentGameplayKeyword[0];
+  const termName = currentGameplayKeyword[1];
+  const termDesc = FormatCustomImgTag(currentGameplayKeyword[2]);
+  const _helpImgs = currentGameplayKeyword[3];
+
+  var carouselDiv = "";
+  if (_helpImgs != "") {
+    const helpImgs = _helpImgs.split("|");
+    carouselDiv = `<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><div class="carousel-inner">`;
+    let firstItem = True;
+    for(var i=0; i<helpImgs.length; i++) {
+      if (firstItem) {
+        firstItem = False;
+        carouselDiv += `<div class="carousel-item active"><img src="data:image/png;base64,${helpImgs[i]}" class="d-block w-100"></div>`;
+      } else {
+        carouselDiv += `<div class="carousel-item"><img src="data:image/png;base64,${helpImgs[i]}" class="d-block w-100"></div>`;
+      }
+    }
+    carouselDiv += `</div><button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button><button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button></div>`;
+  }
+  
+  document.getElementById("gameplayKeywordModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-3">`;
+  document.getElementById("gameplayKeywordModalTitle").innerHTML = termName;
+  document.getElementById("gameplayKeywordModalCarousel").innerHTML = carouselDiv;
+  document.getElementById("gameplayKeywordModalDescription").innerHTML = termDesc;
 }
 
 
@@ -274,8 +310,7 @@ function WriteCollectionContent() {
 }
 
 function FillCollectionModal(imgSrc, desc) {
-  var formattedDesc = desc.replaceAll("<img>", "<img src=\"https://d1h5mn9kk900cf.cloudfront.net/toswebsites/gallery/icons/");
-  formattedDesc = formattedDesc.replaceAll("</img>", ".jpg\" class=\"img-fluid custom-icon-size-3\">");
+  var formattedDesc = formattedContent(desc);
   document.getElementById("collectionModalImage").innerHTML = `<img src="${imgSrc}">`;
   document.getElementById("collectionModalDescription").innerHTML = formattedDesc;
 }
