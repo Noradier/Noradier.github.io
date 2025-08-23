@@ -310,7 +310,7 @@ function WriteCollectionContent() {
 }
 
 function FillCollectionModal(imgSrc, desc) {
-  var formattedDesc = formattedContent(desc);
+  var formattedDesc = FormatCustomImgTag(desc);
   document.getElementById("collectionModalImage").innerHTML = `<img src="${imgSrc}">`;
   document.getElementById("collectionModalDescription").innerHTML = formattedDesc;
 }
