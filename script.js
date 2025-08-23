@@ -260,18 +260,18 @@ function FillGameplayKeywordModal(id) {
   if (_helpImgs != "") {
     const helpImgs = _helpImgs.split("|");
     carouselDiv = `<div id="carouselExampleControls" class="carousel slide" data-ride="carousel"><div class="carousel-inner">`;
-    let firstItem = True;
+    let firstItem = true;
     for(var i=0; i<helpImgs.length; i++) {
       if (firstItem) {
-        firstItem = False;
-        carouselDiv += `<div class="carousel-item active"><img src="data:image/png;base64,${helpImgs[i]}" class="d-block w-100"></div>`;
+        firstItem = false;
+        carouselDiv += `<div class="carousel-item active"><img src="gameplayImgs/${helpImgs[i]}" class="d-block mx-auto w-75"></div>`;
       } else {
-        carouselDiv += `<div class="carousel-item"><img src="data:image/png;base64,${helpImgs[i]}" class="d-block w-100"></div>`;
+        carouselDiv += `<div class="carousel-item"><img src="gameplayImgs/${helpImgs[i]}" class="d-block mx-auto w-75"></div>`;
       }
     }
     carouselDiv += `</div><button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="sr-only">Previous</span></button><button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="sr-only">Next</span></button></div>`;
   }
-  
+
   document.getElementById("gameplayKeywordModalImage").innerHTML = `<img src="data:image/png;base64,${imageB64}" class="custom-icon-size-3">`;
   document.getElementById("gameplayKeywordModalTitle").innerHTML = termName;
   document.getElementById("gameplayKeywordModalCarousel").innerHTML = carouselDiv;
