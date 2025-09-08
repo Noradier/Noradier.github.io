@@ -3,7 +3,7 @@ name: Update Form HTML
 on:
   workflow_dispatch:   # run manually from Actions tab
   schedule:            # optional: run daily at midnight UTC
-    - cron: '0 1 * * 1'
+    - cron: '0 17 * * 0'
 
 permissions:
   contents: write   # allow git push
