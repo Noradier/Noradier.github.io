@@ -63,13 +63,6 @@
         color: #e0e0e0 !important;
         border: 1px solid #444 !important;
       }
-
-      .border-label {
-        border: 1px solid white;
-        padding: 2px 4px;
-        border-radius: 4px;
-        display: inline-block;
-      }
     </style>
     <title>Leaderboard Submission Form</title>
   </head>
@@ -85,20 +78,14 @@
               <select class="form-control" id="stageId" name="stageId" required>
                 <option value="">-- Choose --</option>
                 <option value="September 2025 L10">September 2025 L10</option>
-                <option value="Ragnarok Fenrir NM">Ragnarok Fenrir NM</option>
+                <option value="Atum CM">Atum CM</option>
+                <option value="New Era Fenrir NM">New Era Fenrir NM</option>
               </select>
             </div>
 
             <div class="form-group">
               <label class="text-primary border-label" for="uid">UID</label>
               <input type="text" class="form-control" id="uid" name="uid" required>
-            </div>
-
-            <label class="mb-1 d-block">Form Fill Method</label>
-            <div class="btn-group mb-3" role="group" aria-label="Form fill options">
-              <button type="button" class="btn btn-primary" onclick="setFormMode('id')">ID</button>
-              <button type="button" class="btn btn-secondary" onclick="setFormMode('en')">Name</button>
-              <button type="button" class="btn btn-info" onclick="setFormMode('zh')">名字</button>
             </div>
 
             <div id="formFields" name="formFields"></div>
@@ -125,9 +112,10 @@
       };
 
       let alreadyFilled = false;
+
       document.getElementById("dataForm").addEventListener("submit", async function(e) {
         e.preventDefault();
-        
+
         if(alreadyFilled) {
           document.getElementById("resultMessage").textContent = "Refresh the page for more input. (Intended)";
           return;
@@ -179,7 +167,7 @@
         const formDiv = document.getElementById("formFields");
         switch (mode) {
           case "id":
-            formDiv.innerHTML = `<div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="ldField">Leader ID*</label><input type="number" class="form-control base-field" id="ldField" name="ldField" required></div><div class="col-4 col-md-4 mb-3"><label for="ldFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="ldFieldEN" name="ldFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="ldFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="ldFieldZH" name="ldFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m2Field">Member 2 ID</label><input type="number" class="form-control base-field" id="m2Field" name="m2Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m2FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m2FieldEN" name="m2FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m2FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m2FieldZH" name="m2FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m3Field">Member 3 ID</label><input type="number" class="form-control base-field" id="m3Field" name="m3Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m3FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m3FieldEN" name="m3FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m3FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m3FieldZH" name="m3FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m4Field">Member 4 ID</label><input type="number" class="form-control base-field" id="m4Field" name="m4Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m4FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m4FieldEN" name="m4FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m4FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m4FieldZH" name="m4FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="m5Field">Member 5 ID</label><input type="number" class="form-control base-field" id="m5Field" name="m5Field" ></div><div class="col-4 col-md-4 mb-3"><label for="m5FieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="m5FieldEN" name="m5FieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="m5FieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="m5FieldZH" name="m5FieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="alField">Ally ID*</label><input type="number" class="form-control base-field" id="alField" name="alField" required></div><div class="col-4 col-md-4 mb-3"><label for="alFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="alFieldEN" name="alFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="alFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="alFieldZH" name="alFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="cfField">Leader Craft ID</label><input type="number" class="form-control base-field" id="cfField" name="cfField" ></div><div class="col-4 col-md-4 mb-3"><label for="cfFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="cfFieldEN" name="cfFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="cfFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="cfFieldZH" name="cfFieldZH" readonly></div></div><div class="form-row"><div class="col-4 col-md-4 mb-3"><label class="text-primary border-label" for="ctField">Chronon Card ID</label><input type="number" class="form-control base-field" id="ctField" name="ctField" ></div><div class="col-4 col-md-4 mb-3"><label for="ctFieldEN">Name (Display Only)</label><input type="text" class="form-control text-muted" id="ctFieldEN" name="ctFieldEN" readonly></div><div class="col-4 col-md-4 mb-3"><label for="ctFieldZH">名字(僅顯示)</label><input type="text" class="form-control text-muted" id="ctFieldZH" name="ctFieldZH" readonly></div></div>`;
+            formDiv.innerHTML = `<div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="ldField">Leader ID*</label><input type="number" class="form-control base-field" id="ldField" name="ldField" required></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="m2Field">Member 2 ID</label><input type="number" class="form-control base-field" id="m2Field" name="m2Field" ></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="m3Field">Member 3 ID</label><input type="number" class="form-control base-field" id="m3Field" name="m3Field" ></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="m4Field">Member 4 ID</label><input type="number" class="form-control base-field" id="m4Field" name="m4Field" ></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="m5Field">Member 5 ID</label><input type="number" class="form-control base-field" id="m5Field" name="m5Field" ></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="alField">Ally ID*</label><input type="number" class="form-control base-field" id="alField" name="alField" required></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="cfField">Leader Craft ID</label><input type="number" class="form-control base-field" id="cfField" name="cfField" ></div></div><div class="form-row"><div class="col-12 col-md-12 mb-3"><label class="text-primary" for="ctField">Chronon Card ID</label><input type="number" class="form-control base-field" id="ctField" name="ctField" ></div></div>`;
             idInputFields.forEach(idInputField => {
             const baseInput = document.getElementById(idInputField + "Field");
               baseInput.addEventListener("input", () => {
@@ -255,6 +243,7 @@
           suggestionBox.appendChild(img);
         });
       }
+    setFormMode("id");
     </script>
   </body>
 </html>
