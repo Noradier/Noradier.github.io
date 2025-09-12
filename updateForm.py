@@ -135,19 +135,11 @@ def write_id_mode_form_fields(minify=False):
         requiredSymbol = "*" if isRequired else ""
         formInnerHtmlContent += """
             <div class="form-row">
-              <div class="col-4 col-md-4 mb-3">
-                <label class="text-primary border-label" for="%sField">%s%s</label>
+              <div class="col-12 col-md-12 mb-3">
+                <label class="text-primary" for="%sField">%s%s</label>
                 <input type="number" class="form-control base-field" id="%sField" name="%sField" %s>
               </div>
-              <div class="col-4 col-md-4 mb-3">
-                <label for="%sFieldEN">Name (Display Only)</label>
-                <input type="text" class="form-control text-muted" id="%sFieldEN" name="%sFieldEN" readonly>
-              </div>
-              <div class="col-4 col-md-4 mb-3">
-                <label for="%sFieldZH">名字(僅顯示)</label>
-                <input type="text" class="form-control text-muted" id="%sFieldZH" name="%sFieldZH" readonly>
-              </div>
-            </div>""" % (keyword, label, requiredSymbol, keyword, keyword, isRequired, keyword, keyword, keyword, keyword, keyword, keyword)
+            </div>""" % (keyword, label, requiredSymbol, keyword, keyword, isRequired)
     if minify:
         return minify_html(formInnerHtmlContent)
     return formInnerHtmlContent
@@ -331,13 +323,6 @@ htmlContent = """
         color: #e0e0e0 !important;
         border: 1px solid #444 !important;
       }
-
-      .border-label {
-        border: 1px solid white;
-        padding: 2px 4px;
-        border-radius: 4px;
-        display: inline-block;
-      }
     </style>
     <title>Leaderboard Submission Form</title>
   </head>
@@ -349,7 +334,7 @@ htmlContent = """
 
           <form id="dataForm">
             <div class="form-group">
-              <label class="text-primary border-label" for="stageId">Select the Stage</label>
+              <label class="text-primary" for="stageId">Select the Stage</label>
               <select class="form-control" id="stageId" name="stageId" required>
                 <option value="">-- Choose --</option>"""
 for stage in stageList:
@@ -363,15 +348,8 @@ htmlContent += """
             </div>
 
             <div class="form-group">
-              <label class="text-primary border-label" for="uid">UID</label>
+              <label class="text-primary" for="uid">UID</label>
               <input type="text" class="form-control" id="uid" name="uid" required>
-            </div>
-
-            <label class="mb-1 d-block">Form Fill Method</label>
-            <div class="btn-group mb-3" role="group" aria-label="Form fill options">
-              <button type="button" class="btn btn-primary" onclick="setFormMode('id')">ID</button>
-              <button type="button" class="btn btn-secondary" onclick="setFormMode('en')">Name</button>
-              <button type="button" class="btn btn-info" onclick="setFormMode('zh')">名字</button>
             </div>
 
             <div id="formFields" name="formFields"></div>"""
@@ -387,6 +365,7 @@ htmlContent += """
     <script src="database.js"></script>
     <script>
 %s
+      setFormMode("id");
     </script>
   </body>
 </html>""" % (
@@ -402,4 +381,5 @@ htmlContent += """
 filename = "form.html"
 with open(filename, 'w', encoding="utf-8") as f:
     f.write(htmlContent)
+
 print(f"Successfully writing {filename}")
