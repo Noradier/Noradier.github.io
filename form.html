@@ -74,7 +74,7 @@
 
           <form id="dataForm">
             <div class="form-group">
-              <label class="text-primary border-label" for="stageId">Select the Stage</label>
+              <label class="text-primary" for="stageId">Select the Stage</label>
               <select class="form-control" id="stageId" name="stageId" required>
                 <option value="">-- Choose --</option>
                 <option value="September 2025 L10">September 2025 L10</option>
@@ -84,7 +84,7 @@
             </div>
 
             <div class="form-group">
-              <label class="text-primary border-label" for="uid">UID</label>
+              <label class="text-primary" for="uid">UID</label>
               <input type="text" class="form-control" id="uid" name="uid" required>
             </div>
 
@@ -112,10 +112,9 @@
       };
 
       let alreadyFilled = false;
-
       document.getElementById("dataForm").addEventListener("submit", async function(e) {
         e.preventDefault();
-
+        
         if(alreadyFilled) {
           document.getElementById("resultMessage").textContent = "Refresh the page for more input. (Intended)";
           return;
@@ -243,7 +242,7 @@
           suggestionBox.appendChild(img);
         });
       }
-    setFormMode("id");
+      setFormMode("id");
     </script>
   </body>
 </html>
