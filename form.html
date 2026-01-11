@@ -77,13 +77,63 @@
               <label class="text-primary" for="stageId">Select the Stage</label>
               <input type="text" class="form-control" id="stageId" name="stageId" required>
             </div>
-            
+
             <div class="form-group">
               <label class="text-primary" for="uid">UID</label>
               <input type="text" class="form-control" id="uid" name="uid" required>
             </div>
 
-            <div id="formFields" name="formFields"></div>
+            <div id="formFields" name="formFields">
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="ldField">Leader ID*</label>
+                  <input type="number" class="form-control base-field" id="ldField" name="ldField" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="m2Field">Member 2 ID</label>
+                  <input type="number" class="form-control base-field" id="m2Field" name="m2Field" >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="m3Field">Member 3 ID</label>
+                  <input type="number" class="form-control base-field" id="m3Field" name="m3Field" >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="m4Field">Member 4 ID</label>
+                  <input type="number" class="form-control base-field" id="m4Field" name="m4Field" >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="m5Field">Member 5 ID</label>
+                  <input type="number" class="form-control base-field" id="m5Field" name="m5Field" >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="alField">Ally ID*</label>
+                  <input type="number" class="form-control base-field" id="alField" name="alField" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="cfField">Leader Craft ID</label>
+                  <input type="number" class="form-control base-field" id="cfField" name="cfField" >
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-12 col-md-12 mb-3">
+                  <label class="text-primary" for="ctField">Chronon Card ID</label>
+                  <input type="number" class="form-control base-field" id="ctField" name="ctField" >
+                </div>
+              </div>
+
+            </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -158,7 +208,6 @@
           document.getElementById("resultMessage").textContent = "Error: " + err;
         });
       });
-      setFormMode("id");
     </script>
   </body>
 </html>
